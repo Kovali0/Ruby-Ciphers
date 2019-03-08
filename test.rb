@@ -12,8 +12,9 @@ def cipher_by_Ceaser ()
         cipher_text[i] = c.chr
         i += 1
     end
-    puts 'Zaszyfrowany'
-    puts cipher_text
+    crypto_message = cipher_text.join('')
+    puts 'Zaszyfrowana wiadomość'
+    puts crypto_message
 end
 
 def affine_cipher ()
@@ -30,13 +31,26 @@ def affine_cipher ()
         cipher_text[i] = (y + 97).chr
         i += 1
     end
-    p 'Zaszyfrowany'
-    p cipher_text
+    crypto_message = cipher_text.join('')
+    p 'Zaszyfrowana wiadomość'
+    p crypto_message
+end
+
+def permutational_block_cipher ()
+    text_array = @plaintext.codepoints.to_a
+    ln = text_array.length
+    cipher_text = Array.new(ln)
+    i = 0 
+    text_array.each do |c|
+        
+        cipher_text[i] = (y + 97).chr
+        i += 1
+    end
 end
 
 puts 'Wybierz algorytm szyfrujący.'
 puts '1-Szyfr Cezara'
-p '2-Szyfr afiniczny'
+puts '2-Szyfr afiniczny'
 
 @cipher_id = gets.chomp
 
