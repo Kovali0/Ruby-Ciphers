@@ -39,18 +39,34 @@ end
 def permutational_block_cipher ()
     text_array = @plaintext.codepoints.to_a
     ln = text_array.length
-    cipher_text = Array.new(ln)
-    i = 0 
+    cipher_text_blocks = Array.new(ln) {Array.new(3) {Array.new(3)}}
+    i = 0
+    j = 0 
+    array_number = 0
     text_array.each do |c|
-        
-        cipher_text[i] = (y + 97).chr
-        i += 1
+        for i in 1..3 do
+            for j in 1..3 do
+                cipher_text_blocks[array_number][i][j] = c
+            end
+        end
+        array_number += 1
     end
+    crypto_message = Array.new(ln)
+    for nr in array_number do
+        for i in 1..3 do
+            for j in 1..3 do
+                crypto_message.push(cipher_text_blocks[nr][j][i])
+            end
+        end
+    end
+    p 'Zaszyfrowana wiadomość'
+    p crypto_message
 end
 
 puts 'Wybierz algorytm szyfrujący.'
 puts '1-Szyfr Cezara'
 puts '2-Szyfr afiniczny'
+puts '3-Blokowy szyfr permutacyjny'
 
 @cipher_id = gets.chomp
 
@@ -63,6 +79,8 @@ case @cipher_id
         cipher_by_Ceaser()
     when '2'
         affine_cipher()
+    when '3'
+        permutational_block_cipher()
     begin
         rescue => exception
     end
