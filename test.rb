@@ -39,37 +39,31 @@ end
 def permutational_block_cipher ()
     text_array = @plaintext.codepoints.to_a
     ln = text_array.length
-    big_ar = ln/9 + 1
+    big_ar = ln/9+1
     cipher_text_blocks = Array.new(big_ar) {Array.new(3) {Array.new(3)}}
     iterator = 0
-    p text_array
-    for array_number in 0..1 do
+    for array_number in 0..big_ar do
         for i in 0..2 do
             for j in 0..2 do
-                p text_array[iterator]
-                cipher_text_blocks[array_number][i][j] = text_array[iterator]
-                iterator += 1
+                if text_array[iterator]!=nil
+                    cipher_text_blocks[array_number][i][j] = text_array[iterator]
+                    iterator += 1
+                end
             end
         end
     end
-    p "Test ===================> "
-    p cipher_text_blocks
-    p "Dlugosc :"
-    p cipher_text_blocks.length
     crypto_message = Array.new(ln)
     iterator = 0
-    for nr in 0..1 do
+    for nr in 0..big_ar do
         for i in 0..2 do
             for j in 0..2 do
-                crypto_message[iterator] = cipher_text_blocks[nr][j][i]
-                iterator +=1
+                if iterator < ln
+                    crypto_message[iterator] = cipher_text_blocks[nr][j][i]
+                    iterator +=1
+                end
             end
         end
     end
-    p "Drugi test ===================> "
-    p crypto_message
-    p "Dlugosc :"
-    p crypto_message.length
     k = 0
     message = Array.new(ln)
     crypto_message.each do |c|
@@ -81,7 +75,7 @@ def permutational_block_cipher ()
         end
     end
     crypto_message = message.join('')
-    p 'Zaszyfrowana wiadomość'
+    p 'Zaszyfrowana wiadomosc'
     p crypto_message
 end
 
