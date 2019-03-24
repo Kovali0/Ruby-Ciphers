@@ -40,5 +40,6 @@ class PBCipher
         crypto_message = message.join('')
         p 'Zaszyfrowana wiadomosc'
         p crypto_message
+        return crypto_message
     end
 end

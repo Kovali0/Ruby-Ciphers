@@ -16,5 +16,6 @@ class Caesar
         crypto_message = cipher_text.join('')
         puts 'Zaszyfrowana wiadomość'
         puts crypto_message
+        return crypto_message
     end
 end

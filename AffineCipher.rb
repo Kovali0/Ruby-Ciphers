@@ -16,5 +16,6 @@ class AffineCipher
         crypto_message = cipher_text.join('')
         p 'Zaszyfrowana wiadomość'
         p crypto_message
+        return crypto_message
     end
 end
