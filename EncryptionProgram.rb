@@ -10,10 +10,15 @@ class Program
 
     cipher_id = gets.chomp
 
-    filename = "";
-    while !(filename.end_with?".txt") do
-        puts 'Enter the file name which do you want to encrypt.\n(Remember that file have to have .txt extension'
+    war = 1;
+    while war==1 do
+        puts 'Enter the file name which do you want to encrypt. (Remember that file have to have .txt extension)'
         filename = gets.chomp
+        if filename.end_with?(".txt") && File.file?(filename)
+            war = 0
+        else
+            puts 'Your file doesn t exist or you made mistake in entered filename. Try again.'
+        end
     end
 
     file = File.open(filename, "rb")

@@ -1,21 +1,29 @@
 class Caesar
     def encrypt_by_Caesar (plaintext)
-        puts 'Podaj klucz szyfrujący.'
+        puts 'Enter the encryption key.'
         ceaserkey = gets.chomp.to_i
-        #@plaintext.each_byte do |c|
-        #    c += c
         text_array = plaintext.codepoints.to_a
         ln = text_array.length
         cipher_text = Array.new(ln)
         i = 0
         text_array.each do |c|
-            c += ceaserkey
+            case c
+                when 'z'
+                    c = 'a'
+                when 'Z'
+                    c = 'A'
+                when ' '
+                    c = ' ' #= '_' - optional
+                when '.'
+                    c = '.'
+                else
+                    c += ceaserkey
+                end
             cipher_text[i] = c.chr
             i += 1
         end
         crypto_message = cipher_text.join('')
-        puts 'Zaszyfrowana wiadomość'
-        puts crypto_message
+        puts 'Your message was encrypted.'
         return crypto_message
     end
 end

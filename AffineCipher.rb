@@ -5,8 +5,16 @@ class AffineCipher
         ln = text_array.length
         cipher_text = Array.new(ln)
         alphabet_number = 26 #Number of elements in English alphabet
-        a = 3 
-        b = 11
+        puts 'Enter formula key. (Two number parameters)'
+        puts 'Defoult keys are 3 and 11.'
+        a = gets.chomp.to_i
+        b = gets.chomp.to_i
+        if a==0
+            a = 3
+        end
+        if b==0
+            b = 11
+        end
         i = 0
         text_array.each do |c|
             y = (a*(c-97)+b)%alphabet_number
@@ -14,8 +22,7 @@ class AffineCipher
             i += 1
         end
         crypto_message = cipher_text.join('')
-        p 'Zaszyfrowana wiadomość'
-        p crypto_message
+        puts 'Your message was encrypted.'
         return crypto_message
     end
 end
